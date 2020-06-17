@@ -16,10 +16,10 @@
         </div>
       </div>
       <!-- <img @click="detailmovie(many)" :src="PosterUrl(many)" > -->
-      <div>
+      <!-- <div>
         <button class="d-inline-flex justify-content-start m-1 btn btn-primary" @click="getVideo(many)">Play Trailer</button>
         <button button class="d-inline-flex justify-content-end m-1 btn btn-info">좋아요~</button>
-      </div>
+      </div> -->
     </div>
     <!-- <h1>TopRated Movie</h1>
     <div v-for="top in top3" :key="top.id" :movie="top">

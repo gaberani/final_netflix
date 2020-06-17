@@ -1,88 +1,97 @@
 <template>
   <div class="detail-page row">
-    <img v-if="backdropUrl" :src="backdropUrl"/>
-    <img v-else src="@/assets/NoPoster.jpg">
-    <div class="movie-wrapper" :style="styles">
+    <!-- <img v-if="backdropUrl" :src="backdropUrl"/>
+    <img v-else src="@/assets/NoPoster.jpg"> -->
+    <div class="col-1"></div>
+    <div class="movie-wrapper col-10" :style="styles">
       <p>{{ movie.title }}</p>
       <p>{{ movie.overview }}</p>      
     </div>
-    <!-- 댓글창 -->
-    <!-- <input v-model="commentData.rating" type="text"> -->
-    <form v-if="LoggedIn" action="" >
-      <h3>댓글 목록</h3>
-      <ul v-for="comment in comments" :key="comment.id">
-        <li>평점: {{comment.rating}}</li>
-        <li>{{comment.user.username}} : {{comment.content}}</li>
-        <button data-toggle="modal" :data-target="'#myModal'+comment.id" @click.prevent="getComment(comment.id)" class="btn btn-primary">
-          수정
-        </button> 
-        <div class="modal fade" :id="'myModal'+comment.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">댓글 수정</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-10">
+      <form v-if="LoggedIn" action="" >
+        <h3>댓글 목록</h3>
+        <ul style="list-style: none;" v-for="comment in comments" :key="comment.id">
+          <li><h3>평점: {{comment.rating}}</h3></li>
+          <li><h4>아이디: {{comment.user.username}} | 내용: {{comment.content}}</h4></li>
+          <button data-toggle="modal" :data-target="'#myModal'+comment.id" @click.prevent="getComment(comment.id)" class="btn btn-primary">
+            수정
+          </button> 
+          <div class="modal fade" :id="'myModal'+comment.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">댓글 수정</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form @submit.prevent>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <star-rating 
+                          v-model="NewcommentData.rating"
+                          v-bind:increment="0.5"
+                          v-bind:max-rating="5"
+                          inactive-color="#000"
+                          active-color="#ffc846"
+                          v-bind:star-size="50">
+                        </star-rating>
+                        <textarea
+                          class="form-control"
+                          id="article_body"
+                          placeholder="수정할 댓글 내용"
+                          v-model="NewcommentData.content"
+                          required="required"
+                          rows="3"></textarea>
+                          
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">닫기</button>
+                      <button @click.prevent="updateComment(comment)" type="submit" class="btn btn-primary" data-dismiss="modal">수정하기</button>
+                    </div>
+                  </form>
                 </div>
-                <form @submit.prevent>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <star-rating 
-                        v-model="NewcommentData.rating"
+              </div>
+            </div>
+          <button @click.prevent="deleteComment(comment)" class="btn btn-danger">
+            댓글 삭제
+          </button>
+          <br>
+        </ul>
+        <h2 class="my-3">댓글 작성하기</h2>
+        <div class="col-12 d-inline-flex my-3">
+          <div class="col-2"></div>
+          <div class="col-3">
+            <star-rating v-model="commentData.rating"
                         v-bind:increment="0.5"
                         v-bind:max-rating="5"
                         inactive-color="#000"
                         active-color="#ffc846"
                         v-bind:star-size="50">
-                      </star-rating>
-                      <textarea
-                        class="form-control"
-                        id="article_body"
-                        placeholder="수정할 댓글 내용"
-                        v-model="NewcommentData.content"
-                        required="required"
-                        rows="3"></textarea>
-                        
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">닫기</button>
-                    <button @click.prevent="updateComment(comment)" type="submit" class="btn btn-primary" data-dismiss="modal">수정하기</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+            </star-rating>
           </div>
-        <button @click.prevent="deleteComment(comment)" class="btn btn-danger">
-          댓글 삭제
-        </button>
-        <br>
-      </ul>
-      <h4>댓글 작성하기</h4>
-      <div class="justify-content-between">
-        <div class="col-4">
-          <star-rating v-model="commentData.rating"
-                      v-bind:increment="0.5"
-                      v-bind:max-rating="5"
-                      inactive-color="#000"
-                      active-color="#ffc846"
-                      v-bind:star-size="50">
-          </star-rating>
+          <div class="col-3"><input v-model="commentData.content" type="text"></div>
+          <div class="col-2">
+            <button class="btn btn-primary" @click.prevent="createComment">댓글 작성</button>
+          </div>
+          <div class="col-2"></div>
         </div>
-        <div class="col-4"><input v-model="commentData.content" type="text"></div>
-      </div>
-      <div>
-        <button class="btn btn-primary d-flex justify-content-center" @click.prevent="createComment">댓글 작성</button>
-      </div>
-    </form>
+        
+      </form>
+    </div>
+    <div class="col-1"></div>
     <!-- API로 배우 불러오기 -->
-    <button @click="showActor">Actor Toggle</button>
-    <ul v-for="c in actors.cast" :key="c.cast_id">
+    <div class="col-5"></div>
+    <button class="col-2 my-2" @click="showActor">Actor Toggle</button>
+    <div class="col-5"></div>
+      <ul style="list-style: none;" v-for="c in actors.cast" :key="c.cast_id">
         <li v-if="c.profile_path"><img :src="c.profile_path"></li>
         <li v-else><img src="@/assets/Anonymous.jpg"></li>
         <li>{{ c.name }} </li>
-    </ul>
+      </ul>
   </div>
 </template>
 
