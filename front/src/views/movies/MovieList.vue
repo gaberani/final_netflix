@@ -10,9 +10,9 @@
         <div class="summary">
         <!-- <div class="effect-bar"></div> -->
 				<p>{{ many.overview }}</p>
-          <div class="btn-box">
+          <!-- <div class="btn-box">
             <button type="button" class="btn-preview" @click="getVideo(many)">예고편</button>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- <img @click="detailmovie(many)" :src="PosterUrl(many)" > -->
@@ -21,12 +21,14 @@
         <button button class="d-inline-flex justify-content-end m-1 btn btn-info">좋아요~</button>
       </div> -->
     </div>
-    <!-- <h1>TopRated Movie</h1>
-    <div v-for="top in top3" :key="top.id" :movie="top">
+    <h1 class="col-12">TopRated Movie</h1>
+    <div class="col-sm-6 col-lg-4" v-for="top in top3" :key="top.id" :movie="top">
       <p>제목: {{top.title}}</p>
-      <img :src="PosterUrl(top)">
+      <!-- <img src="@/assets/NoPoster.jpg"> -->
+      <img v-if="top.poster_path" :src="PosterUrl(top)" width="300">
+      <img v-else src="@/assets/NoPoster.jpg">
       <button>Play Trailer</button>
-    </div> -->
+    </div>
   </div>
 </template>
 

@@ -4,6 +4,9 @@
       <div class="col-lg-12">
         TITLE : <input type="text" v-model="movietitle">
         <button @click="send" @keyup.enter="send">검색</button>
+        <br>
+
+        <br>
         <ul v-for="movie in movielist" :key="movie.id" :movie="movie">
           <li>
             {{movie.title}}
@@ -17,7 +20,7 @@
     <div>
       <h1>오늘의 추천</h1>
         <MainView/>
-      <h1>최신영화</h1>
+        <br>
     </div>
   </div>
 </template>
