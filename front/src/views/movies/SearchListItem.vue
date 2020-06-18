@@ -1,37 +1,44 @@
 <template>
-<div class="col-3 my-3">
-    <li v-if="movie.poster_path"><img class="movie--poster my-3" :src="posterUrl(movie)"></li>
-            
-           <li v-else><img class="movie--poster my-3" src="@/assets/NoPoster.jpg"></li> 
-   
-    
-    
-    <h3>{{movie.name}}</h3>
-   
+  <div class="col-3 my-3">
+    <h3>{{movie.title}}</h3>
+    <!-- <p>{{ movie.poster_path }}</p> -->
+    <img v-if="movie.poster_path" @click="detailmovie(movie)" class="movie--poster my-3" :src="PosterUrl(movie)">
+    <img v-else @click="detailmovie(movie)" class="movie--poster my-3" src="@/assets/NoPoster.jpg">
+
   </div>
-  
 </template>
 
 <script>
+import axios from 'axios'
+const SERVER_URL = "http://localhost:8000"
 export default {
     name:'SearchListItem',
     components:{
-        
     },
     props:{
         movie:{
             type:Object,
-            
         }
     },
     data(){
-        return{}
+        return{
+          movieData: {}
+        }
     },
     methods:{
-         PosterUrl(one){
-      return "https://image.tmdb.org/t/p/w300/" + one.poster_path
+      PosterUrl(one){
+        console.log(one.poster_path)
+        return "https://image.tmdb.org/t/p/w300/" + one.poster_path
+      },
+      detailmovie(movie){
+        axios.get(SERVER_URL + `/movies/${movie.id}/?`)
+          .then(() => { this.$router.push({name:'MovieDetail', params: {movieData: movie}}) })
+          .catch(err => console.log(err.response))
     },
+    computed:{
+      LoggedIn(){ return this.$cookies.isKey('auth-token') },
     }
+  }
 }
 </script>
 

@@ -12,8 +12,10 @@ from .serializers import MovieSerializer, MovieListSerializer, CommentSerializer
 # Create your views here.
 @api_view(['GET'])
 def index(request):
+    # movies = Movie.objects.filter(id=669)
     movies = Movie.objects.all()
-    serializer = MovieListSerializer(movies, many=True)
+    # serializer = MovieListSerializer(movies, many=True)
+    serializer = MovieListSerializer(movies)
     return Response(serializer.data)
 
 
@@ -180,11 +182,10 @@ def prefergenre(request,genre_id):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getGenre(request,movie_id):
-    movie=get_object_or_404(Movie,pk=movie_id)
-    serializer=MovieSerializer(movie)
-
-    print(serializer.data)
+def getGenre(request,genre_id):
+    movies=Movie.objects.filter(genres=genre_id)
+    print(len(movies))
+    serializer=MovieSerializer(movies,many=True)
 
     # serializer=GenreSerializer(genres,many=True)
     return Response(serializer.data)

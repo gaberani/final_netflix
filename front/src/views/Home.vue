@@ -5,7 +5,6 @@
         TITLE : <input type="text" v-model="movietitle">
         <button @click="send" @keyup.enter="send">검색</button>
         <br>
-
         <br>
         <ul v-for="movie in movielist" :key="movie.id" :movie="movie">
           <li>
@@ -27,6 +26,8 @@
 
 <script>
 import MainView from '@/views/movies/MainView.vue'
+
+
 import axios from 'axios'
 const SERVER_URL = "http://localhost:8000"
 

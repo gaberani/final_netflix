@@ -5,12 +5,12 @@
     <div class="col-1"></div>
     <div class="movie-wrapper col-10" :style="styles">
       <p>{{ movie.title }}</p>
-      <p>{{ movie.overview }}</p>      
+      <p>{{ movie.overview }}</p>
     </div>
     <div class="col-1"></div>
     <div class="col-1"></div>
     <div class="col-10">
-      <form v-if="LoggedIn" action="" >
+      <form v-if="LoggedIn" action="">
         <h3>댓글 목록</h3>
         <ul style="list-style: none;" v-for="comment in comments" :key="comment.id">
           <li><h3>평점: {{comment.rating}}</h3></li>

@@ -8,7 +8,7 @@
 <script>
 // import axios from 'axios'
 import MovieList from './MovieList.vue'
-import MovieDetail from './MovieDetail'
+import MovieDetail from './MovieDetail.vue'
 
 export default {
   name:'MainView',

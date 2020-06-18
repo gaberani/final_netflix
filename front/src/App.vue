@@ -11,9 +11,9 @@
             <li class="nav-item">
               <router-link to="/articles">게시글 목록</router-link>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <router-link to="/movies/SearchList">Search</router-link>
-            </li> -->
+            </li>
             <li v-if="!islogin" class="nav-item mx-2">
               <router-link to="/accounts/login">로그인</router-link>
             </li>
@@ -24,10 +24,10 @@
               <router-link to="/articles/create">게시글 쓰기</router-link>
             </li>
             <li v-if="islogin" class="nav-item mx-2">
-              <router-link to="/accounts/logout" @click.native="logout">로그아웃</router-link>
+              <router-link to="/movies/MovieRecommend">사용자용 추천</router-link>
             </li>
             <li v-if="islogin" class="nav-item mx-2">
-              <router-link to="/movies/MovieRecommend">사용자용 추천</router-link>
+              <router-link to="/accounts/logout" @click.native="logout">로그아웃</router-link>
             </li>
           </ul>
         </div>
