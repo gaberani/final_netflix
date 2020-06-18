@@ -146,7 +146,15 @@ def wannawatch(request, movie_pk):
     serializer=MovieSerializer(movie)
     return Response(serializer.data)
     # return Response({'message': '필요없음'})
-    
+
+@api_view(['GET'])
+def confirmWatch(request,movie_pk):
+    movie=get_object_or_404(Movie,id=movie_pk)
+    if request.user in movie.like_users.all():
+        return Response({'result':1})
+    else:
+        return Response({'result':0})
+
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
 def getwannawatch(request):

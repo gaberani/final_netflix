@@ -7,8 +7,11 @@
       <p>{{ movie.title }}</p>
       <p>{{ movie.overview }}</p>
     </div>
-     <div><button class="btn btn-warning" @click="addTo" type="button">Add to Watch</button></div>
     <div class="col-1"></div>
+    <div class="col-12 my-3">
+      <button v-if="added" class="btn btn-warning " @click="addTo" type="button">보고시퍼용</button>
+      <button v-else class="btn btn-success " @click="addTo" type="button">볼거에요</button>
+    </div>
     <div class="col-1"></div>
     <div class="col-10">
       <form v-if="LoggedIn" action="">
@@ -119,6 +122,8 @@ export default {
     return{
       islogin:false,
       isUser:false,
+      added:false,
+    
       commentData: {
         rating:null,
         content:null,
@@ -142,7 +147,8 @@ export default {
         'background-repeat': 'no-repeat',
         'background-size': 'cover'
         }
-      }
+      },
+    existence(){ return this.movie.like_users}
     },
     mounted() {
     this.islogin = this.$cookies.isKey('auth-token')
@@ -154,9 +160,14 @@ export default {
     },
      addTo(){
        const config = {
-        headers: {Authorization: `Token ${this.$cookies.get('auth-token')}`}
+          headers: {Authorization: `Token ${this.$cookies.get('auth-token')}`}
       }
+      axios.get(`${SERVER_URL}/movies/confirmWatch/${this.movie.id}`,config)
+      .then(res=>this.added=res.data.result)
+      .catch(err=>console.log(err))
       axios.post(`${SERVER_URL}/movies/wannawatch/${this.movie.id}/`,null,config)
+      .then(()=>this.added= !this.added)
+      .catch(err=>console.log(err))
 
     },
     showActor(){

@@ -22,4 +22,5 @@ urlpatterns = [
 
   path('wannawatch/<int:movie_pk>/',views.wannawatch,name="wannawatch"),
   path('getwannawatch/',views.getwannawatch,name="getwannawatch"),
+  path('confirmWatch/<int:movie_pk>/',views.confirmWatch,name='confirmWatch')
 ]

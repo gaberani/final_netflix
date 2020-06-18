@@ -3,7 +3,7 @@
     <div id="nav">
       <nav class="navbar navbar-expand-lg navbar-light">
         <router-link to="/" class="logo">MoVueHome</router-link>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler hamberger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -210,4 +210,9 @@ nav.navbar {
         color:#aaa; font-size:20px;
         font-weight:bold; margin:65px 0 40px
     }
+
+.hamberger {
+  position: relative;
+  top:10px; left: 89vw;
+}
 </style>
