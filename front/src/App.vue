@@ -8,18 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="movie-search">
-              영화검색 : <input type="text" v-model="movietitle">
-              <button @click="send" @keyup.enter="send">검색</button>
-              <br>
-              <br>
-              <ul v-for="movie in movielist" :key="movie.id" :movie="movie">
-                <li>
-                  {{movie.title}}
-                </li>
-                <div class="img-box" @click="detailmovie(movie)">
-                  <img :src="PosterUrl(movie)">
-                </div>
-              </ul>
+              <input type="text" v-model="movietitle" @keyup.enter="send" placeholder="영화를 검색하세요">
+              <button class="btn-search-icon" @click="send" ><i class="fas fa-search"></i></button>
           </div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -47,6 +37,17 @@
         </div>
       </nav>
     </div>
+     <div v-if="movielist.length > 0" >
+     <h2 class="tit-searched">검색된 영화</h2>
+     <ul class="searched-list">
+         <li v-for="movie in movielist" :key="movie.id" :movie="movie" class="movie-list">
+             <h3 class="tit-list">{{movie.title}}</h3>
+             <div class="img-box" @click="detailmovie(movie)">
+                 <img :src="PosterUrl(movie)">
+             </div>
+         </li>
+     </ul>
+     </div>
     <router-view 
       @submit-login-data="login"
       @submit-signup-data="signup"
@@ -132,7 +133,7 @@ export default{
         background-color:#000;
     }
     a:hover {
-        text-decoration: none;
+        text-decoration: none !important;
     }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -144,16 +145,17 @@ export default{
 
 #nav {
   position:fixed; left:0; top:0;
-  width:100%;
-  padding: 0;
-  z-index:1
+  width:100%; padding: 0;
+  z-index:1;
 }
-.navbar {
-  background-color:#000;
+nav.navbar {
+  background-color:#222;
+    padding: 0 0 35px;
+
 }
 .logo {
-  position:absolute; top:22px; left:25px;
-    font-size:26px; color:#fff
+  position:absolute; top:36px; left:25px;
+    font-size:26px; color:#fff; font-weight:bold;
 }
 .movie-search {
   text-align:center;
@@ -161,19 +163,20 @@ export default{
 }
 .movie-search input{
  background-color:transparent;
-  border:0;
-  border-bottom:2px solid rgb(144,144,144);
-  padding:10px 5px;
-    width:500px;
+  border:0; font-size:20px;
+  border-bottom:2px solid #aaa;
+  padding:10px;
+  width:500px; margin-top:25px;
+  color:#aaa
 
 }
 .navbar-nav {
     position:absolute;
-    top:27px; right:0;
+    top:39px; right:25px;
 }
 
 .nav-item a {
-    color:rgb(144,144,144);
+    color:#aaa;
     font-size:19px;
     padding:20px 10px;
 }
@@ -189,5 +192,30 @@ export default{
   margin: 0
 }
 
-
+    .btn-search-icon {
+        background-color:transparent;
+        border:0;
+        font-size:25px;
+        vertical-align:middle;
+        color:#fff;
+    }
+    .searched-list {
+        margin-bottom:145px;
+    }
+    .tit-searched {
+        font-size:40px; color:#fff; font-weight: bold;
+        margin-top:55px
+    }
+.movie-list {
+    display:inline-block;
+    width:30%;
+    margin: 0 1.66666666666%;
+}
+    .movie-list img {
+        width:100%;
+    }
+    .tit-list {
+        color:#aaa; font-size:20px;
+        font-weight:bold; margin:65px 0 40px
+    }
 </style>

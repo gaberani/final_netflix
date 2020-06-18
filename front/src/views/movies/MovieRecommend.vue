@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1>추천</h1>
+    <h1 class="text-white">추천</h1>
     <ul v-for="comment in comments" :key="comment.id">
         <li v-if="comment.poster_path"><img :src="posterUrl(comment)"></li>
         <li v-else><img src="@/assets/NoPoster.jpg"></li> 

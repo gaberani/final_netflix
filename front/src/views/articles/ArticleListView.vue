@@ -2,20 +2,20 @@
   <div class="row">
     <div class="col-sm-0 col-lg-2"></div>
     <div class="col-sm-12 col-lg-8">
-      <h1 class="text-dark mt-3">게시판</h1>
+      <h1 class="text-white mt-3">게시판</h1>
       <table class="table table-strpied">
         <thead>
           <tr>
-            <th class="text-dark" scope="col">글 번호</th>
-            <th class="text-dark" scope="col">제목</th>
-            <th class="text-dark" scope="col">쟉성자</th>
+            <th class="text-white" scope="col">글 번호</th>
+            <th class="text-white" scope="col">제목</th>
+            <th class="text-white" scope="col">작성자</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="article in articles" :key="`article_${article.id}`">
-            <th scope="row" class="text-dark">{{ article.id }}</th>
-            <td @click="detailarticle(article)" class="text-dark">{{article.title}}</td>
-            <td class="text-dark">{{article.user.username}}</td>
+            <th scope="row" class="text-white">{{ article.id }}</th>
+            <td @click="detailarticle(article)" class="text-white">{{article.title}}</td>
+            <td class="text-white">{{article.user.username}}</td>
           </tr>
         </tbody>
       </table>

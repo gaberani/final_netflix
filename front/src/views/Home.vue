@@ -18,11 +18,9 @@ export default {
 </script>
 
 <style>
-  .main-box {
-    padding-top:84px;
-  }
+
   .tit-main {
-    margin:60px 0 40px;
+    padding:20px 0 40px;
     font-weight:bold; color:#fff
   }
 </style>

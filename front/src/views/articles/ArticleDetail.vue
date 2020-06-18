@@ -2,8 +2,8 @@
   <div class="detail-page row">
     <div class="col-sm-1 col-lg-2"></div>
     <div class="col-sm-10 col-lg-8">
-      <p class="text-left">게시글 제목: {{ article.title }}</p>
-      <p class="text-left" v-if="LoggedIn">게시글 내용: {{ article.content }}</p>
+      <p class="text-left text-white">게시글 제목: {{ article.title }}</p>
+      <p class="text-left text-white" v-if="LoggedIn">게시글 내용: {{ article.content }}</p>
       <button v-if="isUser" 
               @click.prevent="goupdateArticle()"
               class="btn btn-primary m-1">게시글 수정</button>
@@ -13,7 +13,7 @@
       <!-- 댓글창 -->
       <!-- <input v-model="commentData.rating" type="text"> -->
       <form v-if="LoggedIn" action="">
-        <h4 class="text-left">댓글 작성하기</h4>
+        <h4 class="text-left text-white">댓글 작성하기</h4>
           <div class="d-flex justify-content-start">
             <input v-model="commentData.content" type="text" class="mr-2">
             <button class="btn btn-primary" @click.prevent="createComment">댓글 작성</button>
@@ -61,7 +61,7 @@
           </button>
         </ul>
       </form>
-      <h3 v-else>로그인한 사용자만 볼 수 있습니다.</h3>
+      <h3 v-else class="text-white">로그인한 사용자만 볼 수 있습니다.</h3>
     </div>
     <div class="col-sm-1 col-lg-2"></div>
   </div>

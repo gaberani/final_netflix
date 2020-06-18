@@ -1,6 +1,6 @@
 <template>
-  <div class="col-3 my-3">
-    <h3>{{movie.title}}</h3>
+  <div>
+    <h3 class="tit-list">{{movie.title}}</h3>
     <!-- <p>{{ movie.poster_path }}</p> -->
     <img v-if="movie.poster_path" @click="detailmovie(movie)" class="movie--poster my-3" :src="PosterUrl(movie)">
     <img v-else @click="detailmovie(movie)" class="movie--poster my-3" src="@/assets/NoPoster.jpg">
@@ -46,4 +46,8 @@ export default {
 .movie--poster {
   width: 200px;
 }
+  .tit-list {
+    color:#aaa;
+    font-weight: bold;
+  }
 </style>

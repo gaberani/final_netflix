@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>게시글 쓰기 페이지</h1>
+    <h1 class="text-white">게시글 쓰기 페이지</h1>
     <div>
-      <label for="title">제목: </label>
+      <label for="title" class="text-white">제목: </label>
       <input v-model="articleData.title" id="title" type="text">
     </div>
-      <label for="content">내용: </label>
+      <label for="content" class="text-white">내용: </label>
       <textarea v-model="articleData.content" id="content" cols="50" rows="10"></textarea>
     <div>
       <button v-if="!isUpdate" @click="createArticle">작성하기</button>

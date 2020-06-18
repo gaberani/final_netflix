@@ -2,7 +2,7 @@
   <div class="row">
       <!-- <h1 class="text-align-center">Popular Movie</h1> -->
      <div class="col-sm-6 col-lg-4" v-for="many in many3" :key="many.id" :movie="many">
-      <p>제목: {{many.title}}</p>``
+      <p class="tit-movie">{{many.title}}</p>``
       <p style="display : none;">설명 : {{many.overview}}</p>
       <div class="img-box" @click="detailmovie(many)">
         <img :src="PosterUrl(many)">
@@ -21,13 +21,12 @@
         <button button class="d-inline-flex justify-content-end m-1 btn btn-info">좋아요~</button>
       </div> -->
     </div>
-    <h1 class="col-12">TopRated Movie</h1>
-    <div class="col-sm-6 col-lg-4" v-for="top in top3" :key="top.id" :movie="top">
-      <p>제목: {{top.title}}</p>
+    <h1 class="col-12 tit-top">TopRated Movie</h1>
+    <div class="col-sm-6 col-lg-4 img-box" v-for="top in top3" :key="top.id" :movie="top">
+      <p class="tit-movie">{{top.title}}</p>
       <!-- <img src="@/assets/NoPoster.jpg"> -->
       <img v-if="top.poster_path" :src="PosterUrl(top)" width="300">
       <img v-else src="@/assets/NoPoster.jpg">
-      <button>Play Trailer</button>
     </div>
   </div>
 </template>
@@ -105,22 +104,20 @@ export default {
     height:100%;
     overflow:hidden;
   }
-/* .img-box > .summary > .effect-bar {
-  width:80px; height:1000px;
-  background-color:rgb(255,255,255,.7);
-  position:absolute; left :-200px; top :-400px; 
-  transform:rotate(30deg);
-  transition:all .6s; opacity:0.2
-} */
+
 .img-box:hover > .summary { 
   opacity:1;
   transform:scale(1);
 }
-/* .img-box:hover > .summary > .effect-bar {
-  left :400px; top :100px; 
-  opacity: .5;
-} */
-.btn-box {
-  position:absolute; bottom:27px; right:2.5vw;
-  }</style>
+
+    .tit-movie {
+        color:#aaa; font-size:20px
+    }
+.tit-top {
+    color:#fff; font-size:40px;
+    font-weight:bold; margin:65px 0 40px
+}
+
+
+</style>
 
