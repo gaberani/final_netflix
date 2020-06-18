@@ -24,12 +24,13 @@ export default {
     },
     methods:{
         posterUrl(one){ return 'https://image.tmdb.org/t/p/w300/' + one.poster_path },
-        getComment(){const config = {
-        headers: {
-          Authorization: `Token ${this.$cookies.get('auth-token')}`
+        getComment(){
+        const config = {
+            headers: {
+            Authorization: `Token ${this.$cookies.get('auth-token')}`
+            }
         }
-      }
-            axios.get(`${SERVER_URL}/movies/comments/`,config)
+        axios.get(`${SERVER_URL}/movies/comments/`,config)
             .then(res=>this.comments=res.data)
             .catch(err=>console.log(err))
         }

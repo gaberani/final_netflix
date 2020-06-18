@@ -15,6 +15,9 @@
             <li class="nav-item">
               <router-link to="/articles">글 목록</router-link>
             </li>
+            <li v-if="islogin" class="nav-item ">
+              <router-link to="/articles/create">글 쓰기</router-link>
+            </li>
             <li class="nav-item">
               <router-link to="/movies/SearchList">장르 검색</router-link>
             </li>
@@ -25,10 +28,10 @@
               <router-link to="/accounts/signup">회원가입</router-link>
             </li>
             <li v-if="islogin" class="nav-item ">
-              <router-link to="/articles/create">글 쓰기</router-link>
-            </li>
-            <li v-if="islogin" class="nav-item ">
               <router-link to="/movies/MovieRecommend">영화 추천</router-link>
+            </li>
+            <li v-if="islogin" class="nav-item mx-2">
+              <router-link to="/accounts/WatchList">보고싶어요</router-link>
             </li>
             <li v-if="islogin" class="nav-item ">
               <router-link to="/accounts/logout" @click.native="logout">로그아웃</router-link>
@@ -37,17 +40,7 @@
         </div>
       </nav>
     </div>
-     <div v-if="movielist.length > 0" >
-     <h2 class="tit-searched">검색된 영화</h2>
-     <ul class="searched-list">
-         <li v-for="movie in movielist" :key="movie.id" :movie="movie" class="movie-list">
-             <h3 class="tit-list">{{movie.title}}</h3>
-             <div class="img-box" @click="detailmovie(movie)">
-                 <img :src="PosterUrl(movie)">
-             </div>
-         </li>
-     </ul>
-     </div>
+    
     <router-view 
       @submit-login-data="login"
       @submit-signup-data="signup"
@@ -64,22 +57,21 @@ export default{
   data(){
     return{
       islogin:false,
-      movies:null,
       movietitle:null,
       movielist:[],
-      movieData:{}
     }
   },
   methods:{
     send(){
       axios.get(`${SERVER_URL}/movies/search/${this.movietitle}/`)
         .then((res)=>{
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data['message']){
             alert(`Message:${res.data['message']}`)
           }
           else{
-            this.movielist=res.data
+            // this.movielist=res.data
+            this.$router.push({name: 'SearchResult', params:{movielist: res.data}})
           }
         })
         .catch(err=>console.log(err))

@@ -18,7 +18,6 @@ export default {
 </script>
 
 <style>
-
   .tit-main {
     padding:20px 0 40px;
     font-weight:bold; color:#fff

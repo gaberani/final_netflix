@@ -4,11 +4,13 @@ import Home from '../views/Home.vue'
 
 import LoginView from '@/views/accounts/LoginView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
+import WatchList from '@/views/accounts/WatchList.vue'
 
 import MovieList from '@/views/movies/MovieList'
 import MovieDetail from '@/views/movies/MovieDetail.vue'
 import SearchListView from '@/views/movies/SearchListView.vue'
 import MovieRecommend from '@/views/movies/MovieRecommend.vue'
+import SearchResult from '@/views/movies/SearchResult.vue'
 
 import ArticleCreateView from '@/views/articles/ArticleCreateView.vue'
 import ArticleListView from '@/views/articles/ArticleListView.vue'
@@ -68,6 +70,16 @@ Vue.use(VueRouter)
     name:'MovieRecommend',
     component:MovieRecommend
   },
+  {
+    path:'/accounts/WatchList',
+    name:'WatchList',
+    component:WatchList
+  },
+  {
+    path:'/movies/SearchResult',
+    name:'SearchResult',
+    component:SearchResult
+  }
 ]
 
 
