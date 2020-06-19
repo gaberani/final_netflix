@@ -1,10 +1,10 @@
 <template>
 <div>
     <h1 class="text-white">추천</h1>
-    <ul v-for="comment in comments" :key="comment.id">
+    <ul v-for="comment in comments" :key="comment.id" style="list-style:none;">
+        <li><h3 class="text-white">{{comment.title}}</h3></li>
         <li v-if="comment.poster_path"><img :src="posterUrl(comment)"></li>
         <li v-else><img src="@/assets/NoPoster.jpg"></li> 
-        <li>{{comment.rating}}</li>
     </ul>
 </div>
   

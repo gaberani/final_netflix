@@ -10,7 +10,7 @@
 
     <!-- 검색 버튼 누르면 보이는 곳 -->
     <div>
-      <ul class="row">
+      <ul class="row" style="list-style:none;">
         <li v-for="movie in genre_movies" :key="movie.id" class="col-4">
           <SearchListItem :movie="movie"></SearchListItem>
         </li>
