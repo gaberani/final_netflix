@@ -14,7 +14,7 @@
       <!-- <input v-model="commentData.rating" type="text"> -->
       <form v-if="LoggedIn" action="">
         <h4 class="text-left text-white">댓글 작성하기</h4>
-          <div class="d-flex justify-content-start">
+          <div class="d-flex justify-content-start my-2">
             <input v-model="commentData.content" type="text" class="mr-2">
             <button class="btn btn-primary" @click.prevent="createComment">댓글 작성</button>
           </div>
@@ -24,7 +24,7 @@
         <ul v-for="comment in comments" :key="comment.id">
           <li class="text-left">{{comment.user.username}}: {{comment.content}}</li>
           <!-- <li>{{comment.id}}</li>      -->
-          <button data-toggle="modal" :data-target="'#myModal'+comment.id" @click.prevent="getComment(comment.id)">
+          <button data-toggle="modal" :data-target="'#myModal'+comment.id" @click.prevent="getComment(comment.id)" class="btn btn-primary mr-2">
             수정
           </button> 
           <div class="modal fade" :id="'myModal'+comment.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -56,7 +56,7 @@
                 </div>
               </div>
             </div>
-          <button @click.prevent="deleteComment(comment)">
+          <button @click.prevent="deleteComment(comment)" class="btn btn-danger">
             댓글 삭제
           </button>
         </ul>

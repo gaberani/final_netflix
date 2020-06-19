@@ -21,8 +21,8 @@
         <button button class="d-inline-flex justify-content-end m-1 btn btn-info">좋아요~</button>
       </div> -->
     </div>
-    <h1 class="col-12 tit-top">TopRated Movie</h1>
-    <div class="col-sm-6 col-lg-4 img-box" v-for="top in top3" :key="top.id" :movie="top">
+    <h1 class="col-12 tit-top">최고평점 영화</h1>
+    <div class="col-sm-6 col-lg-4 img-box" v-for="top in top3" :key="top.id" :movie="top" @click="detailmovie(top)">
       <p class="tit-movie">{{top.title}}</p>
       <!-- <img src="@/assets/NoPoster.jpg"> -->
       <img v-if="top.poster_path" :src="PosterUrl(top)" width="300">

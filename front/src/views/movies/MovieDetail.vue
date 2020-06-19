@@ -152,23 +152,31 @@ export default {
     },
     mounted() {
     this.islogin = this.$cookies.isKey('auth-token')
+    this.added = this.confirmadded()
   },
   methods:{
     // Actor Btn & API Request
     setActorToggle(){
       this.actorToggle=!this.actorToggle
     },
-     addTo(){
-       const config = {
-          headers: {Authorization: `Token ${this.$cookies.get('auth-token')}`}
+    confirmadded() {
+      const config = {
+        headers: {Authorization: `Token ${this.$cookies.get('auth-token')}`}
       }
       axios.get(`${SERVER_URL}/movies/confirmWatch/${this.movie.id}`,config)
-      .then(res=>this.added=res.data.result)
-      .catch(err=>console.log(err))
+        .then(res=>this.added=res.data.result)
+        .catch(err=>console.log(err))
+    },
+    addTo(){
+      const config = {
+        headers: {Authorization: `Token ${this.$cookies.get('auth-token')}`}
+      }
+      axios.get(`${SERVER_URL}/movies/confirmWatch/${this.movie.id}`,config)
+        .then(res=>this.added=res.data.result)
+        .catch(err=>console.log(err))
       axios.post(`${SERVER_URL}/movies/wannawatch/${this.movie.id}/`,null,config)
-      .then(()=>this.added= !this.added)
-      .catch(err=>console.log(err))
-
+        .then(()=>this.added= !this.added)
+        .catch(err=>console.log(err))
     },
     showActor(){
         axios.get(`${API_URL}movie/${this.movie.id}/credits?api_key=${API_KEY}`)

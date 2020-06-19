@@ -1,6 +1,6 @@
 <template>
   <div class="main-box">
-    <h1 class="tit-main">오늘의 추천</h1>
+    <h1 class="tit-main">최근 많이 본 영화</h1>
       <MainView/>
       <br>
   </div>

@@ -30,7 +30,7 @@ export default {
             Authorization: `Token ${this.$cookies.get('auth-token')}`
             }
         }
-        axios.get(`${SERVER_URL}/movies/comments/`,config)
+        axios.get(`${SERVER_URL}/movies/recommendMovies/`,config)
             .then(res=>this.comments=res.data)
             .catch(err=>console.log(err))
         }
